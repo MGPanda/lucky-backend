@@ -3,6 +3,7 @@ const passport = require('passport');
 
 const userController = require('./controllers/userController');
 const authController = require('./controllers/authController');
+const petController = require('./controllers/petController');
 const router = express.Router();
 
 router.route('/')
@@ -32,6 +33,12 @@ router.route('/test')
         authController.verifyToken, 
         userController);*/
 //USER ROUTES//
+
+
+//PET ROUTES//
+
+router.route('/pets')
+.post(petController.addPet)
 
 
 module.exports = router;
