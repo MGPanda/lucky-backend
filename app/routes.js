@@ -9,7 +9,7 @@ router.route('/')
     .get((req, res)=> {
         res.json({ Mesaje: "welcome"});
     });
-
+ 
 
 //LOGIN ROUTES//
 
@@ -26,11 +26,11 @@ router.route('/logout')
         res.redirect('/');
       });
 
-
+/*
 router.route('/test')
     .get(
         authController.verifyToken, 
-        userController);
+        userController);*/
 //USER ROUTES//
 
 
