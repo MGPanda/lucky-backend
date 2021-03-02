@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./User');
+const Pet = require('./Pet');
 
 const applicationSchema = new mongoose.Schema({
     // hay que pasar el id del usuario de alguna forma. (input hidden?)
@@ -10,7 +11,7 @@ const applicationSchema = new mongoose.Schema({
     // le podemos pasar el id de la mascota por param
     petId: {
         type: mongoose.SchemaTypes.ObjectId,
-        // ref: Pet, 
+        ref: Pet,
     },
     form: {
         data: {
