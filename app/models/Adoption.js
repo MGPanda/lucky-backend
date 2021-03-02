@@ -4,12 +4,16 @@ const mongoose = require('mongoose');
 const User = require('./User');
 
 const adoptionSchema = new mongoose.Schema({
+    petId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        // ref: Pet,
+        // required: true,
+    },
+    userId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: User
+    },
     pet: {
-        idPet: {
-            type: mongoose.SchemaTypes.ObjectId,
-            // ref: Pet,
-            // required: true,
-        },
         name: String,
         city: String,
         gender: {
@@ -18,8 +22,8 @@ const adoptionSchema = new mongoose.Schema({
         },
         img: String
     },
-    organisation: {
-        idOrganisation: {
+    organization: {
+        idOrganization: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: User,
             // required: true,
@@ -73,12 +77,12 @@ const adoptionSchema = new mongoose.Schema({
             status: {
                 type: String,
                 enum: ['process', 'accepted', 'rejected'],
-                required: true,
+                // required: true,
             },
             imgs: [String],
         }
     ],
-    taxes: Number,
+    rate: String,
     active: Boolean
 });
 
