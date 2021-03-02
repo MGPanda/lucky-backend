@@ -8,11 +8,14 @@ const routesAdoption = require('./routes/RoutesAdoption');
 const routesPet = require('./routes/RoutesPet');
 const routesAppointment = require('./routes/RoutesAppointment');
 const routesSpecies = require('./routes/RoutesSpecies');
+const routesApplication = require('./routes/RoutesApplication');
 
 router.use('/', routerUser);
 router.route('/')
-    .get((req, res)=> {
-        res.json({ Mesaje: "welcome"});
+    .get((req, res) => {
+        res.json({
+            Mesaje: "welcome"
+        });
     });
 
 router.use('/news', routesNews);
@@ -20,13 +23,8 @@ router.use('/pet', routesPet);
 router.use('/species', routesSpecies);
 router.use('/adoption', routesAdoption);
 router.use('/appointment', routesAppointment);
+router.use('/application', routesApplication);
 
-
-
-//PET ROUTES//
-
-router.route('/pets')
-.post(petController.addPet)
 
 
 module.exports = router;

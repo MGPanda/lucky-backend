@@ -26,6 +26,6 @@ routesAdoption.route('/status/:id/:idUser')
     .patch(adoptionController.changeStatus);
 
 routesAdoption.route('/add/:petId')
-    .get(adoptionController.addApplicant);
+    .patch(adoptionController.addApplicant);
 
 module.exports = routesAdoption;
