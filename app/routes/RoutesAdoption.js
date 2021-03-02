@@ -21,7 +21,7 @@ routesAdoption.route('/:id')
 routesAdoption.route('/deactivate/:id')
     .patch(adoptionController.deactivateAdoption);
 
-// estas dos últimas rutas no funcionan
+// estas dos últimas rutas no funcionan.
 routesAdoption.route('/status/:id/:idUser')
     .patch(adoptionController.changeStatus);
 
