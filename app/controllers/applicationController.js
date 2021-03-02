@@ -47,8 +47,25 @@ async function createApplication(req, res) {
     }
 }
 
+// podemos cambiar el estado de una solicitud
+async function changeStatusById(req, res) {
+    try {
+        await Application.findByIdAndUpdate(req.params.id, {
+            status: req.body,
+        });
+        res.json({
+            saved: true
+        });
+    } catch (err) {
+        res.json({
+            error: 'Error al consultar la base de datos'
+        });
+    }
+}
+
 module.exports = {
     listApplications,
     createApplication,
-    listApplicationsByUserId
+    listApplicationsByUserId,
+    changeStatusById
 }
