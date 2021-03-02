@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 //necesito la ref de Pet
 // const Pet = require('./Pet'); 
+const User = require('./User');
 
 const adoptionSchema = new mongoose.Schema({
     pet: {
         idPet: {
             type: mongoose.SchemaTypes.ObjectId,
-            ref: Pet,
-            required: true,
+            // ref: Pet,
+            // required: true,
         },
         name: String,
         city: String,
@@ -21,7 +22,7 @@ const adoptionSchema = new mongoose.Schema({
         idOrganisation: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: User,
-            required: true,
+            // required: true,
         },
         name: String,
         address: String,
@@ -79,7 +80,6 @@ const adoptionSchema = new mongoose.Schema({
     ],
     taxes: Number,
     active: Boolean
-
 });
 
 const Adoption = mongoose.model('Adoption', adoptionSchema);
