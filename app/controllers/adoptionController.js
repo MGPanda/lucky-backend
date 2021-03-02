@@ -61,7 +61,7 @@ async function changeStatus(req, res) {
     try {
         const result = listAdoptions();
         result.applicants.forEach(applicant => {
-            if (applicant.applicant.idUser === req.params.idUser) {
+            if (applicant.applicant.idUser == req.params.idUser) {
                 applicant.status = req.body.status;
             }
         });
@@ -78,48 +78,33 @@ async function changeStatus(req, res) {
     }
 }
 
+// {
+//     "$push": {
+//     "tags": {
+//     "tag": "otramas"
+//     }
+//     }
+//    }
+
+
+
 // esto tampoco funciona, es solo ideas
 async function addApplicant(req, res) {
     try {
         const adoptions = await Adoption.find();
-        // console.log(adoptions);
-
-        const result = [];
-        adoptions.forEach(adoption => {
-            console.log(adoption.petId);
-            console.log(req.params.petId);
-            let id = adoption.petId;
-            if (id === req.params.petId) {
-                console.log('hola');
-                // result.push(adoption);
-            }
+        const result = adoptions.filter(adoption => adoption.petId == req.params.petId);
+        const id = result[0]._id;
+        await Adoption.findByIdAndUpdate(id, {
+            applicants: req.body,
         });
-        // const result = adoptions.filter(adoption => adoption.petId === req.params.petId);
-        // console.log(result);
         res.json({
-            results: adoptions
+            saved: true
         });
     } catch (err) {
         res.json({
             error: 'Error al consultar la base de datos'
         });
     }
-
-
-    // try {
-    //     const adoptions = await Adoption.find();
-    //     await Adoption.findByIdAndUpdate(req.params.id, {
-    //         name: req.body.name,
-    //     });
-    //     res.json({
-    //         saved: true
-    //     });
-
-    // } catch (err) {
-    //     res.json({
-    //         error: 'Error al consultar la base de datos'
-    //     });
-    // }
 }
 
 
