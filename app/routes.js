@@ -23,10 +23,4 @@ router.use('/appointment', routesAppointment);
 
 
 
-//PET ROUTES//
-
-router.route('/pets')
-.post(petController.addPet)
-
-
 module.exports = router;
