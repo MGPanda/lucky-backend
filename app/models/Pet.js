@@ -4,7 +4,6 @@ const Species = require('./Species');
 const User = require('./User');
 
 
-<<<<<<< HEAD
 const petSchema = mongoose.Schema({
     name: {
         type: String,
@@ -14,7 +13,7 @@ const petSchema = mongoose.Schema({
     },
     species: {
         type: mongoose.SchemaTypes.ObjectId,
-        // ref: Species,
+        ref: Species
     },
     birthDate: {
         type: Date,
@@ -33,27 +32,6 @@ const petSchema = mongoose.Schema({
 
     data: {
         weight: {
-=======
-const petSchema = mongoose.Schema(
-    {
-        name: {
-            type: String,
-        },
-        city:{
-            type: String,
-        },
-        species:{
-            type: mongoose.SchemaTypes.ObjectId, ref: Species
-        },
-        birthDate:{
-            type: Date,
-        },
-        gender:{
-            type: String,
-            enum: ['male', 'female', 'n/a'] 
-        },
-        size:{
->>>>>>> master
             type: String,
 
         },
@@ -83,7 +61,7 @@ const petSchema = mongoose.Schema(
 
     user: [{
         type: mongoose.SchemaTypes.ObjectId,
-        ref: User // protectora
+        ref: User
     }]
 
 })
