@@ -12,7 +12,7 @@ async function listPets(req, res){
 
 async function listPetId(req, res){
     try {
-        const result = await Pet.findById(req.params.id);
+        const result = await Pet.findById(req.params.id).populate('user');
         res.json({result: result})
         
     } catch (error) {
