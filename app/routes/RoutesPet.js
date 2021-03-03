@@ -16,5 +16,7 @@ routesPet.route('/')
 .get(petController.listPets)
 .post(petController.addPet)
 
+routesPet.route('/:id')
+    .get(petController.listPetId);
 
 module.exports = routesPet;
