@@ -9,12 +9,13 @@ const routesPet = require('./routes/RoutesPet');
 const routesAppointment = require('./routes/RoutesAppointment');
 const routesSpecies = require('./routes/RoutesSpecies');
 const routesApplication = require('./routes/RoutesApplication');
+const routesVisit = require('./routes/RoutesVisit');
 
 router.use('/', routerUser);
 router.route('/')
     .get((req, res) => {
         res.json({
-            Mesaje: "welcome"
+            Mensaje: "welcome"
         });
     });
 
@@ -24,7 +25,7 @@ router.use('/species', routesSpecies);
 router.use('/adoption', routesAdoption);
 router.use('/appointment', routesAppointment);
 router.use('/application', routesApplication);
-
+router.use('/visit', routesVisit);
 
 
 module.exports = router;
