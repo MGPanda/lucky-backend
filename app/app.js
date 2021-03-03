@@ -24,8 +24,6 @@ function bootstraping() {
         extended: true
     }));
 
-    // app.use(express.static(path.join(__dirname, 'public')));
-
     const server = app.listen(config.server.port);
 
     server.on('error', onError);
