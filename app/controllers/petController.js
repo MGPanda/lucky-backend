@@ -41,6 +41,19 @@ async function deletePet(){
     }
 }
 
+async function editPet(req, res){
+
+    try {
+
+        Pet.findOneAndUpdate({_id: req.params.id}, req.body);
+        res.json({modify:pet});
+    } catch (error) {
+
+        res.json({error: error.message});
+    }
+   
+}
+
 
 
 
@@ -50,5 +63,6 @@ module.exports = {
     addPet,
     listPets,
     listPetId,
+    editPet,
     deletePet
 }
