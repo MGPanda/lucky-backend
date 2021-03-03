@@ -20,6 +20,24 @@ async function getVisits(req, res) {
     }
 }
 
+async function getVisitsByUser(req, res) {
+    try {
+        const result = Visit.find({userId: req.params.id});
+        res.json({result: result});
+    } catch (e) {
+        res.json({error: e.message});
+    }
+}
+
+async function getVisitsByPet(req, res) {
+    try {
+        const result = Visit.find({petId: req.params.id});
+        res.json({result: result});
+    } catch (e) {
+        res.json({error: e.message});
+    }
+}
+
 async function getVisit(req, res) {
     try {
         const result = Visit.findById(req.params.id);
@@ -31,7 +49,8 @@ async function getVisit(req, res) {
 
 async function patchVisit(req, res) {
     try {
-        const result = Visit.findOneAndUpdate(/*TODO Params?*/);
+        const result = Visit.findByIdAndUpdate(req.params.id, req.body);
+        res.json({updated: result});
     } catch (e) {
         res.json({error: e.message});
     }
@@ -50,6 +69,8 @@ module.exports = {
     postVisit,
     getVisit,
     getVisits,
+    getVisitsByPet,
+    getVisitsByUser,
     patchVisit,
     deleteVisit,
 }
