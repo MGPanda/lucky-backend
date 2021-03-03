@@ -13,7 +13,7 @@ async function postVisit(req, res) {
 
 async function getVisits(req, res) {
     try {
-        const result = Visit.find();
+        const result = await Visit.find();
         res.json({result: result});
     } catch (e) {
         res.json({error: e.message});
@@ -22,7 +22,7 @@ async function getVisits(req, res) {
 
 async function getVisitsByUser(req, res) {
     try {
-        const result = Visit.find({userId: req.params.id});
+        const result = await Visit.find({userId: req.params.id});
         res.json({result: result});
     } catch (e) {
         res.json({error: e.message});
@@ -31,7 +31,7 @@ async function getVisitsByUser(req, res) {
 
 async function getVisitsByPet(req, res) {
     try {
-        const result = Visit.find({petId: req.params.id});
+        const result = await Visit.find({petId: req.params.id});
         res.json({result: result});
     } catch (e) {
         res.json({error: e.message});
@@ -40,7 +40,7 @@ async function getVisitsByPet(req, res) {
 
 async function getVisit(req, res) {
     try {
-        const result = Visit.findById(req.params.id);
+        const result = await Visit.findById(req.params.id);
         res.json({visit: result});
     } catch (e) {
         res.json({error: e.message});
@@ -49,7 +49,7 @@ async function getVisit(req, res) {
 
 async function patchVisit(req, res) {
     try {
-        const result = Visit.findByIdAndUpdate(req.params.id, req.body);
+        const result = await Visit.findByIdAndUpdate(req.params.id, req.body);
         res.json({updated: result});
     } catch (e) {
         res.json({error: e.message});
@@ -58,7 +58,7 @@ async function patchVisit(req, res) {
 
 async function deleteVisit(req, res) {
     try {
-        const visit = Visit.findByIdAndDelete(req.params.id);
+        const visit = await Visit.findByIdAndDelete(req.params.id);
         res.json({deleted: visit});
     } catch (e) {
         res.json({error: e.message});
