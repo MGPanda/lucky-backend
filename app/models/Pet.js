@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config');
+const Species = require('./Species');
 const User = require('./User');
 
 
@@ -12,7 +13,7 @@ const petSchema = mongoose.Schema(
             type: String,
         },
         species:{
-            type: String,
+            type: mongoose.SchemaTypes.ObjectId, ref: Species
         },
         birthDate:{
             type: Date,
