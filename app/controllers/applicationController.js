@@ -14,14 +14,14 @@ async function listApplications(req, res) {
     }
 }
 
-
 //lista las adopciones de un usuario concreto
 async function listApplicationsByUserId(req, res) {
     try {
-        const applications = await Application.find().populate('pet');
+        const applications = await Application.find().populate({
+            path: 'pet',
+            select: ['name', 'city', 'gender', 'image', '_id'] // solo selecciono los datos que necesito en front
+        });
         const result = applications.filter(application => application.userId == req.params.id); // en result guardamos todas las solicitudes realizadas por un id concreto
-        // const id = result[0]._id; 
-        // const userApplications = await Application.findById(id).populate('pet'); // aquí uso populate para que me salgan los datos de las mascotas
         res.json({
             results: result
         });

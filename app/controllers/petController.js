@@ -1,57 +1,79 @@
 const Pet = require('../models/Pet');
 
 
-async function listPets(req, res){
+async function listPets(req, res) {
     try {
         const results = await Pet.find();
-        res.json({results: results});
+        res.json({
+            results: results
+        });
     } catch (error) {
-        res.json({errors: error.message})
+        res.json({
+            errors: error.message
+        })
     }
 }
 
-async function listPetId(req, res){
+async function listPetId(req, res) {
     try {
-        const result = await Pet.findById(req.params.id).populate('user');
-        res.json({result: result})
-        
+        const result = await Pet.findById(req.params.id).populate('shelter');
+        res.json({
+            result: result
+        })
+
     } catch (error) {
-        res.json({errors: error.message})
+        res.json({
+            errors: error.message
+        })
     }
 }
 
-async function addPet(req , res){
+async function addPet(req, res) {
     try {
         const thisPet = new Pet(req.body);
         await thisPet.save();
-        res.json({results: [thisPet]});
+        res.json({
+            results: [thisPet]
+        });
     } catch (error) {
-        res.json({errors: error.message});
+        res.json({
+            errors: error.message
+        });
     }
 }
 
-async function deletePet(){
+async function deletePet() {
     try {
 
         await Pet.findByIdAndDelete(req.params.id);
-            res.json({delete: true});
-        
+        res.json({
+            delete: true
+        });
+
     } catch (error) {
-        res.json({error: error.message});
+        res.json({
+            error: error.message
+        });
     }
 }
 
-async function editPet(req, res){
+async function editPet(req, res) {
 
     try {
 
-        Pet.findOneAndUpdate({_id: req.params.id}, req.body);
-        res.json({modify:pet});
+        Pet.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body);
+        res.json({
+            modify: pet
+        });
     } catch (error) {
 
-        res.json({error: error.message});
+        res.json({
+            error: error.message
+        });
     }
-   
+
 }
 
 
