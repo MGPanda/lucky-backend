@@ -20,11 +20,11 @@ const petSchema = mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: ['male', 'female', 'n/a']
+        enum: ['Macho', 'Hembra', 'n/a']
     },
     size: {
         type: String,
-        enum: ['small', 'medium', 'big']
+        enum: ['Pequeño', 'Mediano', 'Grande']
     },
     images: {
         image1: String,
@@ -64,10 +64,10 @@ const petSchema = mongoose.Schema({
         transfers: String
     },
 
-    user: [{
+    user: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: User
-    }]
+        ref: User // esto sería realmente una protectora
+    }
 
 })
 

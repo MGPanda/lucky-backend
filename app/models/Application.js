@@ -9,7 +9,7 @@ const applicationSchema = new mongoose.Schema({
         ref: User,
     },
     // le podemos pasar el id de la mascota por param
-    petId: {
+    pet: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: Pet,
     },
