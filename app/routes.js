@@ -2,7 +2,8 @@ const express = require('express');
 
 
 const router = express.Router();
-const routerUser = require('./routes/RoutesUser');
+const routesShelter = require('./routes/RoutesShelter');
+const routesUser = require('./routes/RoutesUser');
 const routesNews = require('./routes/RoutesNews');
 const routesAdoption = require('./routes/RoutesAdoption');
 const routesPet = require('./routes/RoutesPet');
@@ -12,7 +13,7 @@ const routesApplication = require('./routes/RoutesApplication');
 const routesVisit = require('./routes/RoutesVisit');
 const routesImg = require('./routes/RoutesImg');
 
-router.use('/', routerUser);
+router.use('/', routesUser);
 router.route('/')
     .get((req, res) => {
         res.json({
@@ -20,6 +21,7 @@ router.route('/')
         });
     });
 
+router.use('/shelter', routesShelter);
 router.use('/news', routesNews);
 router.use('/pet', routesPet);
 router.use('/species', routesSpecies);
