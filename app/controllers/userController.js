@@ -1,14 +1,15 @@
 const User = require('../models/User');
-const crudUser = require('../business/crudUser');
 
+
+
+/**
+ * @param {array} formdata
+ * @returns {json}
+ */
 
 async function createUser(req, res) {
     try {
-       // const {name, username,password}= req.body;
-
-        const newUser = new User(req.body);
-       
-        
+        const newUser = new User(req.body);        
         await newUser.save();
         res.json({saved: true, newUser});
     }
@@ -17,40 +18,33 @@ async function createUser(req, res) {
         res.json({error: 'Error al consultar DB!'});
     }
 }
-
-async function logout(req, res) {
-    res.json({a: 'hola'});
-};
-
-async function Login(req, res) {
-    /* try {
-        crudUser.getUserByUsername(req.body.username)
-        .then(function (userFound) {
-           // res.json(userFound);
-                if (userFound) {
-                    if (userFound.checkPassword(req.body.password)) {
-                        res.json(userFound);
-                        //return done(null, userFound);
-                    }
-                    else {
-                      //  done(null, false);
-                      res.status(404).send("Datos incorrectos");
-                    }
-                }
-                else {
-                   // done(null, false);
-                   res.status(404).send("Datos incorrectos");
-                } 
-            });
-    } catch(err) {
-        console.log(err);
-        res.json({error: 'Error al consultar DB!'});
-    } */
+/**
+ * @param {String} email
+ * @returns {Promise}
+ */
+function getUserByEmail(email) {
+    return User.findOne({email: email});
 }
 
+/**
+ * @param {String} userId
+ * @returns {Promise}
+ */
+function getUser(userId) {
+    return User.findById(userId);
+}
+
+/**
+ * @returns {Promise}
+ */
+function listUsers() {
+    return User.find();
+}
 
 module.exports = {
     createUser,
-    Login,
-    logout,
+    getUserByEmail,
+    getUser,
+    listUsers,
+
 };
