@@ -20,5 +20,8 @@ routesShelter.route('/login')
         res.redirect('/');
       });
 
+routesShelter.route('/list')
+    .get(shelterController.listShelters);
+
 module.exports = routesShelter;
 
