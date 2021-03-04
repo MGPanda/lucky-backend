@@ -6,7 +6,6 @@ const config = require('../config');
 const shelterSchema = mongoose.Schema(
     {
         name: String,
-        email: String,
         password: String,
         adress: String,
         phone: String,
