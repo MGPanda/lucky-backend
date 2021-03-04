@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 const Species = require('./Species');
-const User = require('./User');
+const Shelter = require('./Shelter');
 
 
 const petSchema = mongoose.Schema({
@@ -64,9 +64,9 @@ const petSchema = mongoose.Schema({
         transfers: String
     },
 
-    user: {
+    shelter: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: User // esto sería realmente una protectora
+        ref: Shelter
     }
 
 })

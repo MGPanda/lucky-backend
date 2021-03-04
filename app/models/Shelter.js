@@ -3,18 +3,16 @@ const bcrypt = require('bcrypt');
 
 const config = require('../config');
 
-const shelterSchema = mongoose.Schema(
-    {
-        name: String,
-        password: String,
-        adress: String,
-        phone: String,
-        city: String,
-        county: String,       
-      
+const shelterSchema = mongoose.Schema({
+    name: String,
+    password: String,
+    address: String,
+    phone: String,
+    city: String,
+    county: String,
 
-    }
-);
+
+});
 
 shelterSchema.pre('save', function (next) {
     if (this.password) {
