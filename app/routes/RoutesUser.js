@@ -20,5 +20,8 @@ routesUser.route('/login')
         res.redirect('/');
       });
 
+      routesUser.route('/list')
+    .get(userController.listUsers);
+
 module.exports = routesUser;
 

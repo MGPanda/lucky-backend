@@ -35,11 +35,16 @@ function getUser(userId) {
 }
 
 /**
- * @returns {Promise}
+ * @returns {json}
  */
-function listUsers() {
-    return User.find();
-}
+function listUsers(req, res) {
+        
+        User.find().then(function (Users) {
+            res.send(Users);
+        });
+        
+    }
+
 
 module.exports = {
     createUser,

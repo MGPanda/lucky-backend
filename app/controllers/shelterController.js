@@ -37,8 +37,12 @@ function getShelter(shelterId) {
 /**
  * @returns {Promise}
  */
-function listShelters() {
-    return Shelter.find();
+function listShelters(req, res) {
+    //return Shelter.find();
+    Shelter.find().then(function (shelter) {
+        res.send(shelter);
+    });
+    
 }
 
 module.exports = {
