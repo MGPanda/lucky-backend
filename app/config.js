@@ -7,7 +7,7 @@ const config = {
             rounds: Number.parseInt(process.env.BYCRYPT_ROUNDS) || 10,
         },
         jwt: {
-            expiresIn: process.env.JWT_EXPIRES || '60s',
+            expiresIn: process.env.JWT_EXPIRES || '100m',
         },
     },
     db: {
