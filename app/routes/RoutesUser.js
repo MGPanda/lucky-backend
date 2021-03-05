@@ -22,6 +22,7 @@ routesUser.route('/logout')
 
 routesUser.route('/edit/:id')
       .get(userController.editUser);
+      
    
 routesUser.route('/list/:id')
     .get(userController.getUser);

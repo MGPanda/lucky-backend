@@ -1,15 +1,17 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const config = require('../config');
 
-function getToken(req, res, next) {
+async function getToken(req, res, next) {
     try {
         const token = jwt.sign(
             req.body,// Desde el cliente nos tienen que pasar un json con username y password
             config.server.secret,
             { expiresIn: config.server.jwt.expiresIn }); // el tiempo de validez del token se puede ajustar desde config.js
-    
-        res.status(200).json({ error: false, token });
+            console.log(req.body);
+            const UserData = await User.findOne({email: req.body.email});
+        res.status(200).json({ error: false, token, UserData });
     }
     catch (err) {
         next(err);
