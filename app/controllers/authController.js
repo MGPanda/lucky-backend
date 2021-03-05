@@ -7,7 +7,8 @@ function getToken(req, res, next) {
         const token = jwt.sign(
             req.body,// Desde el cliente nos tienen que pasar un json con username y password
             config.server.secret,
-            { expiresIn: config.server.jwt.expiresIn });
+            { expiresIn: config.server.jwt.expiresIn }); // el tiempo de validez del token se puede ajustar desde config.js
+    
         res.status(200).json({ error: false, token });
     }
     catch (err) {
