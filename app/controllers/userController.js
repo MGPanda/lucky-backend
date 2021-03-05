@@ -26,6 +26,20 @@ function getUserByEmail(email) {
     return User.findOne({email: email});
 }
 
+async function getUserByEmail2(req,res) {
+
+    try {
+        const result = await User.findOne({email: req.body.email});
+        console.log(result);
+        res.json({result: result})
+        
+    } catch (error) {
+
+        res.json({errors: error.message})
+    }
+}
+
+
 
 async function getUser(req, res) {
     try {
@@ -68,6 +82,7 @@ module.exports = {
     
     createUser,
     getUserByEmail,
+    getUserByEmail2,
     getUser,
     listUsers,
     editUser,
