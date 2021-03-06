@@ -19,7 +19,7 @@ async function listApplicationsByUserId(req, res) {
     try {
         const applications = await Application.find().populate({
             path: 'pet',
-            select: ['name', 'city', 'gender', 'image', '_id'] // solo selecciono los datos que necesito en front
+            select: ['name', 'city', 'gender', 'images', '_id'] // solo selecciono los datos que necesito en front
         });
         const result = applications.filter(application => application.userId == req.params.id); // en result guardamos todas las solicitudes realizadas por un id concreto
         res.json({

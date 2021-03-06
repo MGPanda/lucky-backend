@@ -26,12 +26,30 @@ function getUserByEmail(email) {
     return User.findOne({email: email});
 }
 
-/**
- * @param {String} userId
- * @returns {Promise}
- */
-function getUser(userId) {
-    return User.findById(userId);
+async function getUserByEmail2(req,res) {
+
+    try {
+        const result = await User.findOne({email: req.body.email});
+        console.log(result);
+        res.json({result: result})
+        
+    } catch (error) {
+
+        res.json({errors: error.message})
+    }
+}
+
+
+
+async function getUser(req, res) {
+    try {
+        const result = await User.findById(req.params.id);
+        res.json({result: result})
+        
+    } catch (error) {
+
+        res.json({errors: error.message})
+    }
 }
 
 /**
@@ -44,12 +62,29 @@ function listUsers(req, res) {
         });
         
     }
+    
+async function editUser(req, res){
+
+        try {
+            User.findOneAndUpdate({_id: req.params.id}, req.body);
+
+            res.json({modify: User});
+
+        } catch (error) {
+
+            res.json({error: error.message});
+        }
+       
+    }
 
 
 module.exports = {
+    
     createUser,
     getUserByEmail,
+    getUserByEmail2,
     getUser,
     listUsers,
+    editUser,
 
 };

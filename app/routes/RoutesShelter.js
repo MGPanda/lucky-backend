@@ -20,8 +20,16 @@ routesShelter.route('/login')
         res.redirect('/');
       });
 
+routesShelter.route('/list/:id')
+    .get(shelterController.getShelter);
+ 
+
 routesShelter.route('/list')
     .get(shelterController.listShelters);
 
+routesShelter.route('/edit/:id')
+    .get(shelterController.editShelter);    
+
+    
 module.exports = routesShelter;
 
