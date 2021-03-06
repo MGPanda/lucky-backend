@@ -63,9 +63,28 @@ async function changeStatusById(req, res) {
     }
 }
 
+async function addImg(req, res) {
+    // tengo que buscar la solicitud que coincida con el id del pet
+    try {
+        const application = await Application.findOne({
+            pet: req.params.id
+        });
+        await application.imgs.push(req.body.imgs);
+        await application.save();
+        res.json({
+            saved: true
+        });
+    } catch (err) {
+        res.json({
+            error: 'Error al consultar la base de datos'
+        });
+    }
+}
+
 module.exports = {
     listApplications,
     createApplication,
     listApplicationsByUserId,
-    changeStatusById
+    changeStatusById,
+    addImg
 }
