@@ -16,6 +16,9 @@ routesApplication.route('/')
 routesApplication.route('/:id')
     .patch(applicationController.changeStatusById); // cambiar el estado de una solicitud pasando su id por param
 
+routesApplication.route('/img/:id')
+    .patch(applicationController.addImg);
+
 routesApplication.route('/user/:id')
     .get(applicationController.listApplicationsByUserId); // listar las solicitudes de un usario concreto (pasamos el userId por param)
 

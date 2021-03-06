@@ -10,6 +10,9 @@ const visitSchema = mongoose.Schema({
     date: {
         type: Date,
     },
+    // time: {
+    //     type: TimeRanges
+    // }
 });
 
 const Visit = mongoose.model("Visit", visitSchema);
