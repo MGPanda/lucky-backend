@@ -46,7 +46,9 @@ const applicationSchema = new mongoose.Schema({
             agreeVisit: Boolean
         }
     },
-    imgs: [String],
+    imgs: {
+        type: Array
+    },
     status: {
         type: String,
         enum: ['process', 'accepted', 'rejected'],

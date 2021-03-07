@@ -17,8 +17,7 @@ const userSchema = mongoose.Schema(
         protectora: Boolean,
         image: String,
 
-    }
-);
+});
 
 userSchema.pre('save', function (next) {
     if (this.password) {

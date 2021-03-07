@@ -19,7 +19,7 @@ async function listApplicationsByUserId(req, res) {
     try {
         const applications = await Application.find().populate({
             path: 'pet',
-            select: ['name', 'city', 'gender', 'image', '_id'] // solo selecciono los datos que necesito en front
+            select: ['name', 'city', 'gender', 'images', '_id'] // solo selecciono los datos que necesito en front
         });
         const result = applications.filter(application => application.userId == req.params.id); // en result guardamos todas las solicitudes realizadas por un id concreto
         res.json({
@@ -63,9 +63,28 @@ async function changeStatusById(req, res) {
     }
 }
 
+async function addImg(req, res) {
+    // tengo que buscar la solicitud que coincida con el id del pet
+    try {
+        const application = await Application.findOne({
+            pet: req.params.id
+        });
+        await application.imgs.push(req.body.imgs);
+        await application.save();
+        res.json({
+            saved: true
+        });
+    } catch (err) {
+        res.json({
+            error: 'Error al consultar la base de datos'
+        });
+    }
+}
+
 module.exports = {
     listApplications,
     createApplication,
     listApplicationsByUserId,
-    changeStatusById
+    changeStatusById,
+    addImg
 }
