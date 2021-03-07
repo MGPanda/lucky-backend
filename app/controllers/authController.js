@@ -9,9 +9,11 @@ async function getToken(req, res, next) {
             req.body,// Desde el cliente nos tienen que pasar un json con username y password
             config.server.secret,
             { expiresIn: config.server.jwt.expiresIn }); // el tiempo de validez del token se puede ajustar desde config.js
-            console.log(req.body);
-            const UserData = await User.findOne({email: req.body.email});
-        res.status(200).json({ error: false, token, UserData });
+            
+            const userData = await User.findOne({email: req.body.email});
+            userData.password = undefined;
+            userData.__v = undefined;
+        res.status(200).json({ error: false, token, userData });
     }
     catch (err) {
         next(err);

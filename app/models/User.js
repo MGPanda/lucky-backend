@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema(
         city: String,
         county: String,       
         protectora: Boolean,
+        image: String,
 
     }
 );
