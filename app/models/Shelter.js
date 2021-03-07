@@ -7,6 +7,7 @@ const shelterSchema = mongoose.Schema({
     name: String,
     password: String,
     address: String,
+    email: String,
     phone: String,
     city: String,
     county: String,
