@@ -3,17 +3,19 @@ const bcrypt = require('bcrypt');
 
 const config = require('../config');
 
-const userSchema = mongoose.Schema({
-    name: String,
-    lastname: String,
-    birthdate: Date,
-    email: String,
-    password: String,
-    address: String,
-    phone: String,
-    city: String,
-    county: String,
-    protectora: Boolean,
+const userSchema = mongoose.Schema(
+    {
+        name: String,
+        lastname: String,
+        birthdate: Date,
+        email: String,
+        password: String,
+        adress: String,
+        phone: String,
+        city: String,
+        county: String,       
+        protectora: Boolean,
+        image: String,
 
 });
 
