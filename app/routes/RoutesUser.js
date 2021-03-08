@@ -17,7 +17,7 @@ routesUser.route('/register')
 routesUser.route('/logout')
     .get(function(req, res){
         req.logout();
-        res.redirect('/');
+        res.json({logout: true});
       });
 
 routesUser.route('/edit/:id')
@@ -30,9 +30,6 @@ routesUser.route('/list/:id')
 
 routesUser.route('/list')
     .get(authController.verifyToken , userController.listUsers);
-/*
-routesUser.route('/checkemail/:email')
-    .get(userController.getUserByEmail2);
-*/
+
     
 module.exports = routesUser;
