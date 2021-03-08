@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
     city: String,
     country: String,
     image: String,
+    protectora: Boolean
 });
 
 userSchema.pre('save', function (next) {
