@@ -4,11 +4,22 @@ const bcrypt = require('bcrypt');
 const config = require('../config');
 
 const userSchema = mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
     lastname: String,
     birthdate: Date,
-    email: String,
-    password: String,
+
+    email: {
+        type: String,
+        match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
     address: String,
     phone: String,
     city: String,
