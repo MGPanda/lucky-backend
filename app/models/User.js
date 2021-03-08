@@ -12,9 +12,8 @@ const userSchema = mongoose.Schema({
     address: String,
     phone: String,
     city: String,
-    county: String,
-    protectora: Boolean,
-
+    country: String,
+    image: String,
 });
 
 userSchema.pre('save', function (next) {
