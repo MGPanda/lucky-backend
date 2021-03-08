@@ -11,8 +11,8 @@ const shelterSchema = mongoose.Schema({
     phone: String,
     city: String,
     county: String,
-
-
+    lat: Number,
+    long: Number
 });
 
 shelterSchema.pre('save', function (next) {
