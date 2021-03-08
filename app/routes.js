@@ -10,6 +10,7 @@ const routesPet = require('./routes/RoutesPet');
 const routesSpecies = require('./routes/RoutesSpecies');
 const routesApplication = require('./routes/RoutesApplication');
 const routesVisit = require('./routes/RoutesVisit');
+const routesFavorite = require('./routes/RoutesFavorite');
 const routesImg = require('./routes/RoutesImg');
 
 router.use('/', routesUser);
@@ -27,6 +28,7 @@ router.use('/species', routesSpecies);
 router.use('/adoption', routesAdoption);
 router.use('/application', routesApplication);
 router.use('/visit', routesVisit);
+router.use('/fav', routesFavorite);
 router.use('/img', routesImg);
 
 
