@@ -9,9 +9,23 @@ const User = require('../models/User');
 
 async function createUser(req, res) {
     try {
-        const newUser = new User(req.body);        
+        const newUser = new User(req.body); 
+        console.log(req.body);
+        const checkUser = await User.findOne({email: newUser.email});
+
+        if(checkUser && checkUser.email===newUser.email){
+
+            res.json({error: true});
+
+        }else{
+            
         await newUser.save();
         res.json({saved: true, newUser});
+
+        }
+        
+        
+       
     }
     catch(err) {
         console.log(err);
@@ -26,15 +40,17 @@ function getUserByEmail(email) {
     return User.findOne({email: email});
 }
 
-async function getUserByEmail2(req,res) {
 
+async function getUserByEmail2(req,res) {
+ 
     try {
-        const result = await User.findOne({email: req.body.email});
+        console.log(req.params);
+        const result = await User.findOne({email: req.param.email});
         console.log(result);
         res.json({result: result})
         
     } catch (error) {
-
+      
         res.json({errors: error.message})
     }
 }
