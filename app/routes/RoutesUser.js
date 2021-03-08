@@ -30,6 +30,9 @@ routesUser.route('/list/:id')
 
 routesUser.route('/list')
     .get(authController.verifyToken , userController.listUsers);
-
-
+/*
+routesUser.route('/checkemail/:email')
+    .get(userController.getUserByEmail2);
+*/
+    
 module.exports = routesUser;
