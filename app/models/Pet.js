@@ -15,8 +15,8 @@ const petSchema = mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: Species
     },
-    age: {
-        type: Number,
+    birthDate: {
+        type: Date,
     },
     gender: {
         type: String,
@@ -27,9 +27,7 @@ const petSchema = mongoose.Schema({
         enum: ['Pequeño', 'Mediano', 'Grande']
     },
     images: {
-        image1: String,
-        image2: String,
-        image3: String,
+        type: Array
     },
     km: {
         type: String
@@ -41,7 +39,7 @@ const petSchema = mongoose.Schema({
 
         },
         personality: {
-            type: String
+            type: Array
         },
         history: {
             type: String
