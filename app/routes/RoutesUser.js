@@ -6,30 +6,34 @@ const routesUser = express.Router();
 
 
 //LOGIN ROUTES//
- //  .all(authController.verifyToken) PARA RESTRINGIR EL ACCESO  
+//  .all(authController.verifyToken) PARA RESTRINGIR EL ACCESO  
 
 routesUser.route('/login')
-    .post(passport.authenticate('login-local', { session: false }), authController.getToken);
+    .post(passport.authenticate('login-local', {
+        session: false
+    }), authController.getToken);
 
 routesUser.route('/register')
     .post(userController.createUser);
 
 routesUser.route('/logout')
-    .get(function(req, res){
+    .get(function (req, res) {
         req.logout();
-        res.json({logout: true});
-      });
+        res.json({
+            logout: true
+        });
+    });
 
 routesUser.route('/edit/:id')
-      .get(userController.editUser);
-      
-   
+    .get(userController.editUser);
+
+
 routesUser.route('/list/:id')
     .get(userController.getUser);
- 
+
 
 routesUser.route('/list')
-    .get(authController.verifyToken , userController.listUsers);
+    .get(authController.verifyToken, userController.listUsers);
 
-    
+
 module.exports = routesUser;

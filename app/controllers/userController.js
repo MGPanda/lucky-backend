@@ -9,27 +9,35 @@ const User = require('../models/User');
 
 async function createUser(req, res) {
     try {
-        const newUser = new User(req.body); 
+        const newUser = new User(req.body);
         console.log(req.body);
-        const checkUser = await User.findOne({email: newUser.email});
+        const checkUser = await User.findOne({
+            email: newUser.email
+        });
 
-        if(checkUser && checkUser.email===newUser.email){
+        if (checkUser && checkUser.email === newUser.email) {
 
-            res.json({error: true});
+            res.json({
+                error: true
+            });
 
-        }else{
-            
-        await newUser.save();
-        res.json({saved: true, newUser});
+        } else {
+
+            await newUser.save();
+            res.json({
+                saved: true,
+                newUser
+            });
 
         }
-        
-        
-       
-    }
-    catch(err) {
+
+
+
+    } catch (err) {
         console.log(err);
-        res.json({error: 'Error al consultar DB!'});
+        res.json({
+            error: 'Error al consultar DB!'
+        });
     }
 }
 /**
@@ -37,21 +45,29 @@ async function createUser(req, res) {
  * @returns {Promise}
  */
 function getUserByEmail(email) {
-    return User.findOne({email: email});
+    return User.findOne({
+        email: email
+    });
 }
 
 
-async function getUserByEmail2(req,res) {
- 
+async function getUserByEmail2(req, res) {
+
     try {
         console.log(req.params);
-        const result = await User.findOne({email: req.param.email});
+        const result = await User.findOne({
+            email: req.param.email
+        });
         console.log(result);
-        res.json({result: result})
-        
+        res.json({
+            result: result
+        })
+
     } catch (error) {
-      
-        res.json({errors: error.message})
+
+        res.json({
+            errors: error.message
+        })
     }
 }
 
@@ -60,11 +76,15 @@ async function getUserByEmail2(req,res) {
 async function getUser(req, res) {
     try {
         const result = await User.findById(req.params.id);
-        res.json({result: result})
-        
+        res.json({
+            result: result
+        })
+
     } catch (error) {
 
-        res.json({errors: error.message})
+        res.json({
+            errors: error.message
+        })
     }
 }
 
@@ -72,30 +92,36 @@ async function getUser(req, res) {
  * @returns {json}
  */
 function listUsers(req, res) {
-        
-        User.find().then(function (Users) {
-            res.send(Users);
+
+    User.find().then(function (Users) {
+        res.send(Users);
+    });
+
+}
+
+async function editUser(req, res) {
+
+    try {
+        User.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body);
+
+        res.json({
+            modify: User
         });
-        
+
+    } catch (error) {
+
+        res.json({
+            error: error.message
+        });
     }
-    
-async function editUser(req, res){
 
-        try {
-            User.findOneAndUpdate({_id: req.params.id}, req.body);
-
-            res.json({modify: User});
-
-        } catch (error) {
-
-            res.json({error: error.message});
-        }
-       
-    }
+}
 
 
 module.exports = {
-    
+
     createUser,
     getUserByEmail,
     getUserByEmail2,
