@@ -10,6 +10,27 @@ async function listSpecies(req, res){
     }
 }
 
+async function createSpecies(req, res) {
+    try {
+        const newSpecies = new Species (req.body);
+        console.log(req.body);
+        await newSpecies.save();
+
+        res.json({
+            saved: true,
+            newSpecies
+        });
+    
+    }
+    catch (err) {
+
+        res.json({
+            error: 'Error al consultar DB!'
+        });
+    }
+}
+
 module.exports={
-    listSpecies
+    listSpecies,
+    createSpecies
 }
