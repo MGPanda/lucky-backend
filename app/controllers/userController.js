@@ -18,7 +18,8 @@ async function createUser(req, res) {
         if (checkUser && checkUser.email === newUser.email) {
 
             res.json({
-                error: true
+                error: true,
+                user: newUser.email
             });
 
         } else {
