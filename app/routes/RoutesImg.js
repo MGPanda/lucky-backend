@@ -15,7 +15,6 @@ routesImg.post('/', fileMiddleware.upload.array('image'), async (req, res) => {
         const newPath = await uploader(path)
         urls.push(newPath)
         fs.unlinkSync(path)
-        console.log(urls)
       }
   
       res.status(200).json({

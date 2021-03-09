@@ -47,7 +47,7 @@ const applicationSchema = new mongoose.Schema({
         }
     },
     imgs: {
-        type: []
+        type: Array
     },
     status: {
         type: String,
