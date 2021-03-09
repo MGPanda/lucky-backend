@@ -8,12 +8,12 @@ const FavoritesSchema = mongoose.Schema({
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: User,
-        required: true,
+       
     },
     petId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: Pet,
-        required: true,
+     
     }
 
 });

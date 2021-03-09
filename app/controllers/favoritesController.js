@@ -8,6 +8,7 @@ const Favorite = require('../models/Favorites');
 async function createFavorite(req, res) {
     try {
         const newFavorite = new Favorite(req.body); 
+        console.log(req.body);
                 
         await newFavorite.save();
         res.json({saved: true, newFavorite});
@@ -32,6 +33,15 @@ function listFavorites(req, res) {
         });
         
 }
+
+function findFavorite(req, res) {
+        
+    Favorite.find({ userId: req.body.userId, petId: req.body.petId }).then(function (Favs) {
+       
+        res.json(Favs);
+    });
+    
+}
     
 async function removeFavorites(req, res) {
   
@@ -55,5 +65,6 @@ module.exports = {
     createFavorite,
     removeFavorites,
     listFavorites,
+    findFavorite,
     
 };
