@@ -3,28 +3,38 @@ const User = require('./User');
 const Pet = require('./Pet');
 
 const applicationSchema = new mongoose.Schema({
-    // hay que pasar el id del usuario de alguna forma. (input hidden?)
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: User,
+        required: true
     },
-    // le podemos pasar el id de la mascota por param
     pet: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: Pet,
+        required: true
     },
     form: {
         data: {
             name: String,
-            email: String,
+            email: {
+                type: String,
+                match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                required: true
+            },
             tel: String,
-            DNI: String,
+            DNI: {
+                type: String,
+                match: /^[0-9]{8,8}[A-Za-z]$/
+            },
             address: {
                 street: String,
                 code: String,
                 city: String
             },
-            terms: Boolean,
+            terms: {
+                type: Boolean,
+                required: true
+            },
         },
         pets: {
             morePets: Boolean,
@@ -42,7 +52,10 @@ const applicationSchema = new mongoose.Schema({
             moving: Boolean,
             garden: Boolean,
             flatmate: Boolean,
-            agreeTerms: Boolean,
+            agreeTerms: {
+                type: Boolean,
+                required: true
+            },
             agreeVisit: Boolean
         }
     },
@@ -52,7 +65,7 @@ const applicationSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['process', 'accepted', 'rejected'],
-        // required: true,
+        required: true,
     }
 });
 
