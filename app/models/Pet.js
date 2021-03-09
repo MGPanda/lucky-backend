@@ -32,7 +32,6 @@ const petSchema = mongoose.Schema({
     km: {
         type: String
     },
-
     data: {
         weight: {
             type: String,
