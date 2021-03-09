@@ -2,7 +2,7 @@ const multer = require('multer');
 const fs = require('fs');
 require('dotenv').config();
 const path = require('path');
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary');
 
 const VALID_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg'];
 
@@ -27,24 +27,23 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
     storage,
-    fileFilter,
+    fileFilter: fileFilter,
 });
 
-const uploadToCloudinary = async (req, res, next) => {
-    if (req.file) {
-        const filePath = req.file.path;
-
-        const image = await cloudinary.uploader.upload(filePath);
-        await fs.unlinkSync(filePath);
-
-        req.file_url = image.secure_url;
-        next();
-    } else {
-        next();
-    }
+const uploadToCloudinary =  (file, folder) => {
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(file, (result) => {
+            resolve({
+                url: result.url,
+                
+            })
+        
+        })
+    })
 }
 
 module.exports = {
     upload,
     uploadToCloudinary
 };
+

@@ -16,7 +16,7 @@ async function listPets(req, res) {
 
 async function listPetId(req, res) {
     try {
-        const result = await Pet.findById(req.params.id).populate('shelter');
+        const result = await Pet.findById(req.params.id).populate('species').populate('shelter').exec();
         res.json({
             result: result
         })
