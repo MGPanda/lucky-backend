@@ -3,7 +3,7 @@ const Pet = require('../models/Pet');
 
 async function listPets(req, res) {
     try {
-        const results = await Pet.find();
+        const results = await Pet.find().populate('species');
         res.json({
             results: results
         });
