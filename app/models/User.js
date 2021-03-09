@@ -18,7 +18,8 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength:[5,'Minimun length 5 characters']
     },
     address: String,
     phone: String,

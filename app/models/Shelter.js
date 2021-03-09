@@ -4,13 +4,27 @@ const bcrypt = require('bcrypt');
 const config = require('../config');
 
 const shelterSchema = mongoose.Schema({
-    name: String,
-    password: String,
+
+    name: {
+        type: String,
+        required: true
+    },
+
+    email: {
+        type: String,
+        match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength:[5,'Minimun length 5 characters']
+    },
     address: String,
-    email: String,
     phone: String,
     city: String,
-    county: String,
+    country: String,
+    image: String,
     lat: Number,
     long: Number
 });
