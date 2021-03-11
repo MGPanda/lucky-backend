@@ -13,6 +13,7 @@ const petController = require('../controllers/petController');
 //PET ROUTES//
 
 routesPet.route('/')
+
 .get(petController.listPets)
 .post(petController.addPet)
 
