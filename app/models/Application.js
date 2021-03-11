@@ -18,13 +18,10 @@ const applicationSchema = new mongoose.Schema({
             name: String,
             email: {
                 type: String,
-                match: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                required: true
             },
             tel: String,
             DNI: {
                 type: String,
-                match: /^[0-9]{8,8}[A-Za-z]$/
             },
             address: {
                 street: String,
