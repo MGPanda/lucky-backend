@@ -26,12 +26,22 @@ async function createFavorite(req, res) {
  */
 function listFavorites(req, res) {
         
-        Favorite.find({ userId: req.params.id }).populate('petId').then(function (Favs) {
+        Favorite.find({ userId: req.params.id }).then(function (Favs) {
             console.log(Favs);
             console.log(req.params.id);
             res.json({Favs});
         });
         
+}
+
+function listFavoritesPets(req, res) {
+        
+    Favorite.find({ userId: req.params.id }).populate('petId').then(function (Favs) {
+        console.log(Favs);
+        console.log(req.params.id);
+        res.json({Favs});
+    });
+    
 }
 
 function findFavorite(req, res) {
@@ -65,6 +75,7 @@ module.exports = {
     createFavorite,
     removeFavorites,
     listFavorites,
+    listFavoritesPets,
     findFavorite,
     
 };

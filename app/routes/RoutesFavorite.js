@@ -12,6 +12,9 @@ routesFavorite.route('/add')
 routesFavorite.route('/list/:id') //hay q pasarle el id de usuario para que liste sus favs
     .get(favoriteController.listFavorites);
 
+routesFavorite.route('/favs/:id') //hay q pasarle el id de usuario para que liste sus favs
+    .get(favoriteController.listFavoritesPets);  
+
 routesFavorite.route('/list')
     .post(favoriteController.findFavorite);
 
