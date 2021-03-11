@@ -37,8 +37,6 @@ function listFavorites(req, res) {
 function listFavoritesPets(req, res) {
         
     Favorite.find({ userId: req.params.id }).populate('petId').then(function (Favs) {
-        console.log(Favs);
-        console.log(req.params.id);
         res.json({Favs});
     });
     
