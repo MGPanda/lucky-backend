@@ -15,7 +15,7 @@ function bootstraping() {
     });
 
     app.use(cors({
-        origin: 'https://dazzling-panini-89da73.netlify.app',
+        origin: 'https://lucky-app.netlify.app',
         credentials: true,
     }));
 
